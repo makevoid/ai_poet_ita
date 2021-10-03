@@ -20,7 +20,8 @@ require_relative "lib/gpt3_poet"
 
 def load_few_shots_text
   text = File.read "#{PATH}/few_shots_learning_text.txt"
-  text.strip
+  text.strip!
+  text
 end
 
 FEW_SHOTS_TEXT = load_few_shots_text

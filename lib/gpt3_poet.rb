@@ -12,7 +12,7 @@ class GPT3Poet
   end
 
   def poem
-    text = "#{FEW_SHOTS_TEXT}\n"
+    text = FEW_SHOTS_TEXT
     openai_generate_text text: text
   end
 
