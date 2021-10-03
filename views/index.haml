@@ -1,48 +1,25 @@
-/ get new random question section with button and textarea
--# .section
--#   .columns
--#     .column
--#       %h1 New Question
--#       %form{ action: "/questions", method: "post" }
--#         %input{ type: "submit", value: "Submit" }
-
-
 / ask question form with textarea and button
 .section
   .columns
     .column
       .card
         .card-content
-          %h1 Ask a Question
-          %p e.g. ( "how to split a string in ruby?" or "how to parse time in ruby?" etc. )
-          %form{ action: "/questions", method: "post" }
-            %textarea.textarea.question{ name: "question", rows: "3" }
-            .s10
-            %input.button.is-primary.is-large{ type: "submit", value: "Submit" }
+          %h1 Genera una Poesia
+          %form{ action: "/poems", method: "post" }
+            %input.button.is-info.is-large{ type: "submit", value: "Genera" }
 
 / response - question
-- if question.question
+- if poem
   .section
     .columns
+      .column.is-one-fifth
       .column
         .card
           .card-content
-            %h1 Answer
-            %p to question: #{question.question}
-            %p.answer #{question.answer}
-
-
-/ get all questions
--# .section
--#   .columns
--#     .column
--#       %h1 Questions
--#       %ul
--#         - @questions && @questions.each do |question|
--#           / render a card
--#           %li
--#             .card
--#               .card-content
--#                 %h3
--#                   %a{ href: "/questions/#{question.id}" } #{question.title}
--#                 %p #{question.body}
+            %h1 Poesia
+            %p.answer
+              :plain
+                #{poem}
+            .s30
+            -# %p Model Output: #{model_output}
+      .column.is-one-fifth

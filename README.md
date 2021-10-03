@@ -1,8 +1,7 @@
-# AIOverflow
+# AI Poet (ITA)
 
-### GPT3-based Stackoverflow-like platform
+### GPT3 powered Poet
 
+GPT3 API: OpenAI
 
-
-
-API: OpenAI Codex
+Model: Davinci

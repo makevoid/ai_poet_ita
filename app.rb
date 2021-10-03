@@ -1,45 +1,26 @@
 # roda applicaiton
 require_relative "env"
 
-class NullQuestion; def question; end; def answer; end; end
-
-class Question
-  attr_reader :question, :answer
-
-  def initialize(question:, answer:)
-    @question = question
-    @answer = answer
-  end
-end
-
 class App < Roda
   plugin :render, engine: "haml"
-  plugin :assets, css: "style.css", js: "app.js"
   plugin :public
   plugin :all_verbs
   plugin :json
   plugin :error_handler
   plugin :common_logger
+  # plugin :assets, css: "style.css", js: "app.js"
 
   route do |r|
     r.root do
-      question = NullQuestion.new
-      view "index", locals: { question: question }
+      poem = nil
+      view "index", locals: { poem: poem }
     end
 
-    r.on "questions" do
+    r.on "poems" do
       r.post do
-        question = r.params["question"]
-        question.strip!
-        # TODO: refactor
-        question = "#{question} ?" unless question[-1] == "?"
-        puts "QUESTION"
-        p question
-        question = question[0..100]
-        bot = GPT3AnswerBot.new question: question
-        answer = bot.answer
-        question = Question.new question: question, answer: answer
-        view "index", locals: { question: question }
+        bot = GPT3Poet.new
+        poem = bot.poem
+        view "index", locals: { poem: poem }
       end
 
       r.get do

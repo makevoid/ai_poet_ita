@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    image: makevoid/aioverflow:latest
+    image: makevoid/ai_poet_ita:latest
     build:
       context: .
     ports:
